@@ -1,0 +1,40 @@
+version: '3'  
+
+services:
+  upathway-robot-facade:
+    image: upathway-robot-facade:0.0.0
+    container_name: upathway-robot-facade
+    restart: always
+    environment:
+      ROBOT_FACADE_IP: "0.0.0.0"
+      ROBOT_FACADE_PORT: "8081"
+      ROBOT_FACADE_ENDPOINT: "/robot-facade"
+      ROBOT_FACADE_API_TITLE: "Robot Facade"
+      ROBOT_FACADE_API_DESCRIPTION: "API"
+      ROBOT_FACADE_API_VERSION: "0.0.0"
+      ROBOT_ID: 130
+      ROBOT_UUID: 80d543bd-bbd5-4e24-b0e4-eac675416a77
+      FACILITY_ID: 124
+      MQTT_BROKER_IP: "192.168.100.130"
+      MQTT_BROKER_PORT: 9005
+      ROBOT_API_IP: "192.168.1.240"
+      ROBOT_API_PORT: 8090
+    volumes:
+      - ./src:/home/code
+    network_mode: host  
+    # networks: 
+    #   - upathway_network
+    # ports:
+    #   - 8081:8081 
+    logging:
+     driver: "json-file"
+     options:
+      max-size: "50M"
+      max-file: "1"   
+
+
+
+
+# networks:
+#     upathway_network:
+#       name: upathway_network
